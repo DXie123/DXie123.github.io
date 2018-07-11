@@ -302,8 +302,8 @@
           
             <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的方式编译，大多数ide默认都是<code>pdflatex</code>（亲测用<code>pdflatex</code>无效），在此对比一下我采用过的几种编译方法。</p>
 <h1 id="编译方法对比"><a href="#编译方法对比" class="headerlink" title="编译方法对比"></a>编译方法对比</h1><h2 id="TexStudio（推荐）"><a href="#TexStudio（推荐）" class="headerlink" title="TexStudio（推荐）"></a>TexStudio（推荐）</h2><p>TexStudio中实现复杂的编译还是非常简单的</p>
-<p>打开设置-&gt;构建<br><img src="/2018/07/11/latexcompile/./latexcompile/texstudio1.png" alt="设置"></p>
-<p>打开元命令-&gt;构建并查看-&gt;配置<br><img src="/2018/07/11/latexcompile/./latexcompile/texstudio2.png" alt="设置"></p>
+<p>打开设置-&gt;构建<br><img src="./latexcompile/texstudio1.png" alt="设置"></p>
+<p>打开元命令-&gt;构建并查看-&gt;配置<br><img src="./latexcompile/texstudio2.png" alt="设置"></p>
 <p>设置完毕#</p>
 <h2 id="WinEdt"><a href="#WinEdt" class="headerlink" title="WinEdt"></a>WinEdt</h2><p><em>不要用ctex中的老版本，自己换一个WinEdt10</em></p>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>WinEdt支持自定义宏，因此，可以采用自定义宏的方式实现一键编译</p>
@@ -316,14 +316,14 @@
 <li>修改配置文件</li>
 </ol>
 <p>打开<code>Options-&gt;Menus and Toolbar-&gt;Main Menu</code>，在<code>ITEM=&quot;PDFTeXify&quot;</code>插入代码：</p>
-<p><img src="/2018/07/11/latexcompile/./latexcompile/mainmenu.png" alt="Main Menu"></p>
+<p><img src="./latexcompile/mainmenu.png" alt="Main Menu"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ITEM=&quot;compile&quot;</span><br><span class="line">  CAPTION=&quot;CustomCompile&quot;</span><br><span class="line">  IMAGE=&quot;Play1&quot;</span><br><span class="line">  SAVE_INPUT=1</span><br><span class="line">  MACRO=&quot;Exe(&apos;%b\Exec\TeX\compile.edt&apos;);&quot; //调用编写的文件</span><br><span class="line">  SHORTCUT=&quot;16452::CTRL+D&quot; //设置快捷键</span><br><span class="line">  REQ_FILTER=:&quot;%!M=TeX&quot;|&quot;%!M=TeX:STY&quot;|&quot;%!M=TeX:AUX&quot;</span><br></pre></td></tr></table></figure>
 <p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。至此，<code>Tex</code>目录下应该已经有加入的编译命令，快捷键CTRL+D也可以调用编译命令</p>
 <ol start="3">
 <li>加入button</li>
 </ol>
 <p>为了方便使用，可以在工具栏再加上一个编译按键，打开<code>Options-&gt;Menus and Toolbar-&gt;Toolbar</code></p>
-<p><img src="/2018/07/11/latexcompile/./latexcompile/toolbar.png" alt="Main Menu"><br>取消该行的注释，并打开其目录。</p>
+<p><img src="./latexcompile/toolbar.png" alt="Main Menu"><br>取消该行的注释，并打开其目录。</p>
 <p>在<code>BUTTON=&quot;PDFTeXify&quot;</code>前添加自定义按键</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BUTTON=&quot;compile&quot;</span><br><span class="line">BUTTON=&quot;PDFTeXify&quot;</span><br></pre></td></tr></table></figure>
 <p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。</p>
