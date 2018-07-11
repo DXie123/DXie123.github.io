@@ -322,8 +322,12 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的方式编译，大多数ide默认都是<code>pdflatex</code>（亲测用<code>pdflatex</code>无效），配置成一键<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的编译方法还是比较麻烦的，在此对比一下我采用过的几种编译方法。</p>
-<h1 id="编译方法对比"><a href="#编译方法对比" class="headerlink" title="编译方法对比"></a>编译方法对比</h1><h2 id="WinEdt"><a href="#WinEdt" class="headerlink" title="WinEdt"></a>WinEdt</h2><p><em>不要用ctex中的老版本，自己换一个WinEdt10</em></p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的方式编译，大多数ide默认都是<code>pdflatex</code>（亲测用<code>pdflatex</code>无效），在此对比一下我采用过的几种编译方法。</p>
+<h1 id="编译方法对比"><a href="#编译方法对比" class="headerlink" title="编译方法对比"></a>编译方法对比</h1><h2 id="TexStudio（推荐）"><a href="#TexStudio（推荐）" class="headerlink" title="TexStudio（推荐）"></a>TexStudio（推荐）</h2><p>TexStudio中实现复杂的编译还是非常简单的</p>
+<p>打开设置-&gt;构建<br><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/texstudio1.png" alt="设置"></p>
+<p>打开元命令-&gt;构建并查看-&gt;配置<br><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/texstudio2.png" alt="设置"></p>
+<p>设置完毕#</p>
+<h2 id="WinEdt"><a href="#WinEdt" class="headerlink" title="WinEdt"></a>WinEdt</h2><p><em>不要用ctex中的老版本，自己换一个WinEdt10</em></p>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>WinEdt支持自定义宏，因此，可以采用自定义宏的方式实现一键编译</p>
 <ol>
 <li>编写宏文件<code>compile.edt</code>（也可采用录制宏的方式）</li>
@@ -345,7 +349,8 @@
 <p>在<code>BUTTON=&quot;PDFTeXify&quot;</code>前添加自定义按键</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BUTTON=&quot;compile&quot;</span><br><span class="line">BUTTON=&quot;PDFTeXify&quot;</span><br></pre></td></tr></table></figure>
 <p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。</p>
-<h2 id="TexStudio"><a href="#TexStudio" class="headerlink" title="TexStudio"></a>TexStudio</h2>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>还有其他方法包括编写bat文件、makefile文件、latexmk命令等等方法，但是更推荐直接在ide里编译。</p>
+
           
         
       
