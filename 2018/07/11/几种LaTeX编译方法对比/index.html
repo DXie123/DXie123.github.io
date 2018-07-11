@@ -82,15 +82,18 @@
 <meta name="description" content="前言在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的方式编译，大多数ide默认都是pdflatex（亲测用pdflatex无效），配置成一键xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的编译方法还是比较麻烦的，在此对比一下我采用过">
 <meta name="keywords" content="latex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实现一键`xelatex-&gt;biber-&gt;xelatex-&gt;xelatex`的几种方法">
+<meta property="og:title" content="实现一键xelatex-&gt;biber-&gt;xelatex-&gt;xelatex的几种方法">
 <meta property="og:url" content="http://yoursite.com/2018/07/11/几种LaTeX编译方法对比/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="前言在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的方式编译，大多数ide默认都是pdflatex（亲测用pdflatex无效），配置成一键xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的编译方法还是比较麻烦的，在此对比一下我采用过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-11T10:24:04.156Z">
+<meta property="og:image" content="http://yoursite.com/2018/07/11/几种LaTeX编译方法对比/几种LaTeX编译方法对比/mainmenu.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/11/几种LaTeX编译方法对比/几种LaTeX编译方法对比/toolbar.png">
+<meta property="og:updated_time" content="2018-07-11T11:02:18.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实现一键`xelatex-&gt;biber-&gt;xelatex-&gt;xelatex`的几种方法">
+<meta name="twitter:title" content="实现一键xelatex-&gt;biber-&gt;xelatex-&gt;xelatex的几种方法">
 <meta name="twitter:description" content="前言在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的方式编译，大多数ide默认都是pdflatex（亲测用pdflatex无效），配置成一键xelatex-&amp;gt;biber-&amp;gt;xelatex-&amp;gt;xelatex的编译方法还是比较麻烦的，在此对比一下我采用过">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/11/几种LaTeX编译方法对比/几种LaTeX编译方法对比/mainmenu.png">
 
 
 
@@ -126,7 +129,7 @@
 
 
 
-  <title>实现一键`xelatex->biber->xelatex->xelatex`的几种方法 | Blog</title>
+  <title>实现一键xelatex->biber->xelatex->xelatex的几种方法 | Blog</title>
   
 
 
@@ -250,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">实现一键`xelatex->biber->xelatex->xelatex`的几种方法</h1>
+          <h1 class="post-title" itemprop="name headline">实现一键xelatex->biber->xelatex->xelatex的几种方法</h1>
         
 
         <div class="post-meta">
@@ -324,8 +327,28 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的方式编译，大多数ide默认都是<code>pdflatex</code>（亲测用<code>pdflatex</code>无效），配置成一键<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的编译方法还是比较麻烦的，在此对比一下我采用过的几种编译方法。</p>
 <h1 id="编译方法对比"><a href="#编译方法对比" class="headerlink" title="编译方法对比"></a>编译方法对比</h1><h2 id="WinEdt"><a href="#WinEdt" class="headerlink" title="WinEdt"></a>WinEdt</h2><p><em>不要用ctex中的老版本，自己换一个WinEdt10</em></p>
-<p>WinEdt支持自定义宏，因此，可以采用自定义宏的方式实现一键编译</p>
-
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>WinEdt支持自定义宏，因此，可以采用自定义宏的方式实现一键编译</p>
+<ol>
+<li>编写宏文件<code>compile.edt</code>（也可采用录制宏的方式）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Exe(&apos;%b\Exec\TeX\XeLaTeX.edt&apos;); //调用WinEdt内置的宏</span><br><span class="line">RunConsole(&apos;biber %N&apos;,&apos;%P&apos;,&apos;BiBer ...&apos;); //运行终端命令</span><br><span class="line">Exe(&apos;%b\Exec\TeX\XeLaTeX.edt&apos;);</span><br><span class="line">Exe(&apos;%b\Exec\TeX\XeLaTeX.edt&apos;);</span><br><span class="line">//宏文件编写的具体规则可查看WinEdt帮助文件</span><br></pre></td></tr></table></figure>
+<p>将其保存在WinEdt安装目录\Exec\TeX\下。</p>
+<ol start="2">
+<li>修改配置文件</li>
+</ol>
+<p>打开<code>Options-&gt;Menus and Toolbar-&gt;Main Menu</code>，在<code>ITEM=&quot;PDFTeXify&quot;</code>插入代码：</p>
+<p><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/mainmenu.png" alt="Main Menu"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ITEM=&quot;compile&quot;</span><br><span class="line">  CAPTION=&quot;CustomCompile&quot;</span><br><span class="line">  IMAGE=&quot;Play1&quot;</span><br><span class="line">  SAVE_INPUT=1</span><br><span class="line">  MACRO=&quot;Exe(&apos;%b\Exec\TeX\compile.edt&apos;);&quot; //调用编写的文件</span><br><span class="line">  SHORTCUT=&quot;16452::CTRL+D&quot; //设置快捷键</span><br><span class="line">  REQ_FILTER=:&quot;%!M=TeX&quot;|&quot;%!M=TeX:STY&quot;|&quot;%!M=TeX:AUX&quot;</span><br></pre></td></tr></table></figure>
+<p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。至此，<code>Tex</code>目录下应该已经有加入的编译命令，快捷键CTRL+D也可以调用编译命令</p>
+<ol start="3">
+<li>加入button</li>
+</ol>
+<p>为了方便使用，可以在工具栏再加上一个编译按键，打开<code>Options-&gt;Menus and Toolbar-&gt;Toolbar</code></p>
+<p><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/toolbar.png" alt="Main Menu"><br>取消该行的注释，并打开其目录。</p>
+<p>在<code>BUTTON=&quot;PDFTeXify&quot;</code>前添加自定义按键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BUTTON=&quot;compile&quot;</span><br><span class="line">BUTTON=&quot;PDFTeXify&quot;</span><br></pre></td></tr></table></figure>
+<p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。</p>
+<h2 id="TexStudio"><a href="#TexStudio" class="headerlink" title="TexStudio"></a>TexStudio</h2>
       
     </div>
     
@@ -495,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译方法对比"><span class="nav-number">2.</span> <span class="nav-text">编译方法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WinEdt"><span class="nav-number">2.1.</span> <span class="nav-text">WinEdt</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译方法对比"><span class="nav-number">2.</span> <span class="nav-text">编译方法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WinEdt"><span class="nav-number">2.1.</span> <span class="nav-text">WinEdt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TexStudio"><span class="nav-number">2.2.</span> <span class="nav-text">TexStudio</span></a></li></ol></li></ol></div>
             
 
           </div>
