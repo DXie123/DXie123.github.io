@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/11/几种LaTeX编译方法对比/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/11/latexcompile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dylan Xie">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/11/几种LaTeX编译方法对比/" itemprop="url">实现一键xelatex->biber->xelatex->xelatex的几种方法</a></h1>
+                <a class="post-title-link" href="/2018/07/11/latexcompile/" itemprop="url">实现一键xelatex->biber->xelatex->xelatex的几种方法</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T12:48:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T19:33:55+08:00">
                 2018-07-11
               </time>
             
@@ -270,28 +270,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/latex/" itemprop="url" rel="index">
-                    <span itemprop="name">latex</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -324,8 +302,8 @@
           
             <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在latex写作中，貌似只有biblatex解决了中文参考文献的问题，但biblatex要求按照<code>xelatex-&gt;biber-&gt;xelatex-&gt;xelatex</code>的方式编译，大多数ide默认都是<code>pdflatex</code>（亲测用<code>pdflatex</code>无效），在此对比一下我采用过的几种编译方法。</p>
 <h1 id="编译方法对比"><a href="#编译方法对比" class="headerlink" title="编译方法对比"></a>编译方法对比</h1><h2 id="TexStudio（推荐）"><a href="#TexStudio（推荐）" class="headerlink" title="TexStudio（推荐）"></a>TexStudio（推荐）</h2><p>TexStudio中实现复杂的编译还是非常简单的</p>
-<p>打开设置-&gt;构建<br><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/texstudio1.png" alt="设置"></p>
-<p>打开元命令-&gt;构建并查看-&gt;配置<br><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/texstudio2.png" alt="设置"></p>
+<p>打开设置-&gt;构建<br><img src="/2018/07/11/latexcompile/./latexcompile/texstudio1.png" alt="设置"></p>
+<p>打开元命令-&gt;构建并查看-&gt;配置<br><img src="/2018/07/11/latexcompile/./latexcompile/texstudio2.png" alt="设置"></p>
 <p>设置完毕#</p>
 <h2 id="WinEdt"><a href="#WinEdt" class="headerlink" title="WinEdt"></a>WinEdt</h2><p><em>不要用ctex中的老版本，自己换一个WinEdt10</em></p>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>WinEdt支持自定义宏，因此，可以采用自定义宏的方式实现一键编译</p>
@@ -338,146 +316,18 @@
 <li>修改配置文件</li>
 </ol>
 <p>打开<code>Options-&gt;Menus and Toolbar-&gt;Main Menu</code>，在<code>ITEM=&quot;PDFTeXify&quot;</code>插入代码：</p>
-<p><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/mainmenu.png" alt="Main Menu"></p>
+<p><img src="/2018/07/11/latexcompile/./latexcompile/mainmenu.png" alt="Main Menu"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ITEM=&quot;compile&quot;</span><br><span class="line">  CAPTION=&quot;CustomCompile&quot;</span><br><span class="line">  IMAGE=&quot;Play1&quot;</span><br><span class="line">  SAVE_INPUT=1</span><br><span class="line">  MACRO=&quot;Exe(&apos;%b\Exec\TeX\compile.edt&apos;);&quot; //调用编写的文件</span><br><span class="line">  SHORTCUT=&quot;16452::CTRL+D&quot; //设置快捷键</span><br><span class="line">  REQ_FILTER=:&quot;%!M=TeX&quot;|&quot;%!M=TeX:STY&quot;|&quot;%!M=TeX:AUX&quot;</span><br></pre></td></tr></table></figure>
 <p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。至此，<code>Tex</code>目录下应该已经有加入的编译命令，快捷键CTRL+D也可以调用编译命令</p>
 <ol start="3">
 <li>加入button</li>
 </ol>
 <p>为了方便使用，可以在工具栏再加上一个编译按键，打开<code>Options-&gt;Menus and Toolbar-&gt;Toolbar</code></p>
-<p><img src="/2018/07/11/几种LaTeX编译方法对比/./几种LaTeX编译方法对比/toolbar.png" alt="Main Menu"><br>取消该行的注释，并打开其目录。</p>
+<p><img src="/2018/07/11/latexcompile/./latexcompile/toolbar.png" alt="Main Menu"><br>取消该行的注释，并打开其目录。</p>
 <p>在<code>BUTTON=&quot;PDFTeXify&quot;</code>前添加自定义按键</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BUTTON=&quot;compile&quot;</span><br><span class="line">BUTTON=&quot;PDFTeXify&quot;</span><br></pre></td></tr></table></figure>
 <p>选择<code>Options-&gt;Maintenace-&gt;Rebuild All</code>，重新加载窗口。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>还有其他方法包括编写bat文件、makefile文件、latexmk命令等等方法，但是更推荐直接在ide里编译。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dylan Xie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/08/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T23:37:59+08:00">
-                2018-07-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -559,21 +409,12 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">分类</span>
-                
-              </div>
             
 
             
